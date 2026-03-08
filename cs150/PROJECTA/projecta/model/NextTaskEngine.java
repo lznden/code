@@ -1,30 +1,45 @@
-package projecta.model;
-
+package model;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class NextTaskEngine {
 
-    public Task chooseNextTask(TaskList taskList) {
+    public Task chooseNextTask(TaskList taskList, UserSchedule schedule) {
+
+        // 1. Check if user is busy right now
+        if (isUserBusyNow(schedule)) {
+            return null; // or return a special "busy" task if you want
+        }
+
+        // 2. Normal logic
         List<Task> candidates = taskList.getIncompleteTasks();
-        if (candidates.isEmpty()) return null;
+        if (candidates.isEmpty()) {
+            return null;
+        }
 
-        candidates.sort((t1, t2) -> {
-   
-            LocalDate d1 = t1.getDueDate();
-            LocalDate d2 = t2.getDueDate();
+        taskList.sortByDueDateThenPriority();
 
-            if (d1 == null && d2 == null)
-                return Integer.compare(t1.getPriority(), t2.getPriority());
-            if (d1 == null) return 1;
-            if (d2 == null) return -1;
+        for (Task t : taskList.getAllTasks()) {
+            if (!t.isCompleted()) {
+                return t;
+            }
+        }
+        return null;
+    }
 
-            int cmp = d1.compareTo(d2);
-            if (cmp != 0) return cmp;
+    private boolean isUserBusyNow(UserSchedule schedule) {
+        DayOfWeek day = LocalDate.now().getDayOfWeek();
+        int hour = LocalTime.now().getHour();
 
-            return Integer.compare(t1.getPriority(), t2.getPriority());
-        });
+        // Convert MONDAY → "Monday"
+        String dayName = capitalize(day.toString().toLowerCase());
 
-        return candidates.get(0);
+        return schedule.isBlocked(dayName, hour);
+    }
+
+    private String capitalize(String s) {
+        return s.substring(0,1).toUpperCase() + s.substring(1);
     }
 }

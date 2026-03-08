@@ -1,9 +1,13 @@
-package projecta.view;
+package view;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridLayout;
 
-public class ScheduleView {
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class ScheduleView extends JPanel {
 
     private JComboBox<String> dayBox;
     private JComboBox<Integer> startHourBox;
@@ -12,6 +16,11 @@ public class ScheduleView {
     private JButton addButton;
 
     public ScheduleView() {
+        Integer[] hours = new Integer[24];
+        for (int i = 0; i < 24; i++) {
+            hours[i] = i;
+        }
+
         setLayout(new GridLayout(5, 2, 10, 10));
 
         dayBox = new JComboBox<>(new String[]{

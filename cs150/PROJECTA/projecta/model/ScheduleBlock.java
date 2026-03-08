@@ -1,4 +1,4 @@
-package projecta.model;
+package model;
 
 public class ScheduleBlock {
     private String day;

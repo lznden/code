@@ -1,0 +1,23 @@
+# Build artifacts
+target/
+*.class
+*.jar
+*.war
+
+# IDE
+.vscode/*
+!.vscode/tasks.json
+*.swp
+*.swo
+*~
+.DS_Store
+
+# IDE Metadata
+.classpath
+.project
+.settings/
+*.iml
+.idea/
+
+# OS
+Thumbs.db

@@ -1,0 +1,50 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile Java Project",
+            "type": "shell",
+            "isBackground": false,
+            "windows": {
+                "command": "cmd",
+                "args": [
+                    "/c",
+                    "${workspaceFolder}\\compile.bat"
+                ]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^(.+?):(\\d+):\\s+(error|warning):\\s+(.+)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 3,
+                    "message": 4
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Run Application",
+            "type": "shell",
+            "command": "java",
+            "args": [
+                "-cp",
+                "target/classes",
+                "view.MainFrame"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "test"
+            }
+        }
+    ]
+}

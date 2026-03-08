@@ -1,5 +1,5 @@
 
-package projecta.model;
+package model;
 
 public class PointTracker {
 

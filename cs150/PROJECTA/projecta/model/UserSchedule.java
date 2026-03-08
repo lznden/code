@@ -1,7 +1,7 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
-
-package projecta.model;
 
 public class UserSchedule {
     private List<ScheduleBlock> blocks;
