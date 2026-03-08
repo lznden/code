@@ -7,6 +7,13 @@
             "request": "launch",
             "mainClass": "projecta.model.PlannerTest",
             "projectName": "PROJECT-A"
+        },
+        {
+            "type": "java",
+            "name": "Debug MainFrame",
+            "request": "launch",
+            "mainClass": "projecta.view.MainFrame",
+            "projectName": "PROJECT-A"
         }
     ]
 }

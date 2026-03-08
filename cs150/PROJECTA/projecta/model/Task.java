@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 public class Task {
 
-    private String title;
-    private TaskCategory category;
-    private int estimatedMinutes;
-    private LocalDate dueDate;  // able to be null
-    private int priority;   // 1-5, 1 highest
-    private int points; //points earned on task completion
+    private final String title;
+    private final TaskCategory category;
+    private final int estimatedMinutes;
+    private final LocalDate dueDate;  // able to be null
+    private final int priority;   // 1-5, 1 highest
+    private final int points; //points earned on task completion
     private boolean completed;
 
     public Task(String title,
